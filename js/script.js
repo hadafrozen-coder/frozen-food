@@ -22,7 +22,7 @@ item.addEventListener('click',(e) => {
    document.querySelector('.modalHarga').innerHTML = harga;
 
    const nohp = '+628568084552';
-   let pesan = `https://api.whatsapp.com/send?phone=${+6285692928708}&text=hai kak,saya mau pesan product ini ${gambar}, dengan harga ${harga}`;
+   let pesan = `https://api.whatsapp.com/send?phone=${+628568084552}&text=hai kak,saya mau pesan product ini ${gambar}, dengan harga ${harga}`;
 
 
     document.querySelector('.btnBeli').href = pesan;
