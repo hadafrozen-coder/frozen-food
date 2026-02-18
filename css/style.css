@@ -9,12 +9,28 @@ div h1 span {
   color:  #fa5b0f
   
 }
-input#address.text {
-  margin: 0.5rem 0;
+
+.error {
+  color: red;
+  font-size: 12px;
 }
-input#name.text {
-  margin: 0.5rem 0;
+
+.input-error {
+  border: 1px solid red;
+  
 }
-input#phone.phone {
-  margin: 0.1rem 0;
+
+textarea#address.form-control {
+margin: 0.5rem 0 1%;
+}
+
+input#name.form-control {
+  margin: 0.5rem 0 1%;
+} img.me-3.mb-3 {
+    height:90vh;
+    width: auto;
+    justify-content: center;
+    display: flex;
+    position: relative;
+    right: 2.8rem;
 }

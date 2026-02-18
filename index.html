@@ -22,8 +22,8 @@
    <div><h1>Partilah<span>Shop</span></h1></div>
    <div class="ms-auto my-auto">
     <ul class="list-inline m-0">
-      <li class="list-inline-item mx-md-3"><a href="#product" class="text-decoration-none text-dark fw-bold">Our product</a></li>
-      <li class="list-inline-item mx-md-3"><a href="#about" class="text-decoration-none text-dark fw-bold">About us</a></li>
+      <li class="list-inline-item mx-md-3"><a href="#product" class="text-decoration-none text-dark fw-bold">Produk Kami</a></li>
+      <li class="list-inline-item mx-md-3"><a href="#about" class="text-decoration-none text-dark fw-bold">Payment</a></li>
       <li class="list-inline-item mx-md-3"><a href="#order" class="text-decoration-none text-dark fw-bold">How to order</a></li>
     </ul>
    </div>
@@ -44,6 +44,31 @@
 <div class="text-center w-50 mx-auto fw-light">PartilahShop, Menyediakan busana muslim dan Herbal pilihan</div>
 
 <div class="row row-cols-md-3 row-cols-2 gx-3 p-3">
+
+
+<div class="col mb-3">
+    <div class="card shadow" >
+  <img src="images/sosis.png" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title"><span class="modalNama">Sosis sapi asli sehat dan bergizi!</span></h5>
+    <p class="card-text"> 1pck @8pcs.</p>
+   <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
+  </div>
+  <div class="d-none deskripsi"><p>sosis yang terbuat dari daging pilihan serta rempah asli indonesia sehingga menghasilkan rasa lezat yang disukai anak-anak serta orang dewasa.diproses dengan sterilisasi dan vacum kedap udara yang memungkikan disimpan lama.utuk stock dirumah simpan di lemari pendingin.</p></div>
+  <div class="card-footer d-md-flex">
+      <a class="btn btn-sm btn-primary d-block btnDetail ">detail</a>
+      <span class="ms-auto text-danger fw-bold d-block text-center harga">Rp. 18.000,00
+</span>
+
+      
+
+     
+
+  </div>
+   </div>
+   </div>
+
+
    <div class="col mb-3">
     <div class="card shadow" >
   <img src="images/sosis.png" class="card-img-top" alt="...">
@@ -56,6 +81,9 @@
   <div class="card-footer d-md-flex">
       <a class="btn btn-sm btn-primary d-block btnDetail ">detail</a>
       <span class="ms-auto text-danger fw-bold d-block text-center harga">Rp. 18.000,00</span>
+
+     
+
   </div>
    </div>
    </div>
@@ -80,8 +108,7 @@
    </div>
 
 
-
-   <div class="col mb-3">
+  <div class="col mb-3">
     <div class="card shadow" >
   <img src="images/risoles.png" class="card-img-top" alt="...">
   <div class="card-body">
@@ -97,7 +124,7 @@
    </div>
 
 
- <div class="col mb-3">
+   <div class="col mb-3">
     <div class="card shadow" >
   <img src="images/bergo.png" class="card-img-top" alt="...">
   <div class="card-body">
@@ -198,9 +225,9 @@
    <!--About us-->
    <div id="about" class="px-4 py-4 bg-secondary text-center">
     <div class="mx-auto w-75">
-      <h3 class="text-white">About Us</h3>
-      <p class="text-center text-white"><img src="images/about-us.png" alt="" align="left" style="width: 100px; height: auto " 
-       class="me-3 mb-3" /> Our frozen food products are made with the highest quality ingredients and are carefully prepared to ensure freshness and taste quality guarantee and price friendly.special treats without breaking the bank Happy Shopping!.</p>
+      <h3 class="text-white">Payment Method</h3>
+      <p class="text-center text-white"><img src="images/hero/qris partilah.jpg" alt="" text-align="left" 
+       class="me-3 mb-3" /></p>
     </div>
    </div>
 
@@ -208,7 +235,7 @@
     <div id="order" class="px-4 py-4 bg-light text-center">
     <div class="mx-auto w-75">
       <h3>How to order</h3>
-      <p class="text-center"><img src="images/order.png" alt="" align="right" style="width: 100px; height: auto" 
+      <p class="text-center"><img src="images/order.png" alt="" text-align="right" style="width: 100px; height: auto" 
        class="ms-3 mb-3" /> Lorem ipsum dolor sit amet consectetur adipisicing elit. Veniam asperiores quasi quod quos aliquam ab incidunt, tenetur pariatur voluptatem voluptate soluta qui porro rerum obcaecati? Reiciendis.</p>
     </div>
    </div>
@@ -238,19 +265,24 @@
         <div class="col-md-6 col-12">
           <div class="modalDeskripsi"></div>
 
-            <label for="name">
-     <!-- <span class="name">Nama : </span> -->
-     <input type="text" name="name" id="name" class="text" placeholder="Nama Lengkap">
-      </label>
+       <div class="form-group">
+  <label for="name"></label>
+  <input type="text" id="name" class="form-control" placeholder="Nama Lengkap">
+  <small class="error" id="errorName"></small>
+</div>
 
-      <label for="phone">
-     <!-- <span class="phone">No.Hp :</span>  -->
-     <input type="number" name="phone" id="phone" class="phone" placeholder="No.Hp">
-      </label>
+<div class="form-group">
+  <label for="phone"></label>
+  <input type="text" id="phone" class="form-control" placeholder="No.Hp">
+  <small class="error" id="errorPhone"></small>
+</div>
 
-     <!-- <label for="address"> <span class="address">Alamat :</span>  -->
-      <input type="text" name="address" id="address" class="text" placeholder="Alamat Lengkap"> 
-    </label>  
+<div class="form-group">
+  <label for="address"></label>
+  <textarea id="address" class="form-control" placeholder="Alamat Lengkap"></textarea>
+  <small class="error" id="errorAddress"></small>
+</div>
+
 
            <div class="d-md-flex">
       <a href="" target="blank" class="btn btn-sm btn-warning d-block btnBeli ">Beli product ini</a>

@@ -21,36 +21,75 @@ item.addEventListener('click',(e) => {
    document.querySelector('.modalDeskripsi').innerHTML = deskripsi;
    document.querySelector('.modalHarga').innerHTML = harga;
 
-        const nohp = '+628568084552';
-
-document.querySelector('.btnBeli').addEventListener('click', function(e) {
+        document.querySelector('.btnBeli').addEventListener('click', function(e) {
   e.preventDefault();
 
+  const namaInput = document.querySelector('#name');
+  const phoneInput = document.querySelector('#phone');
+  const addressInput = document.querySelector('#address');
 
+  const nama = namaInput.value.trim();
+  const phone = phoneInput.value.trim();
+  const address = addressInput.value.trim();
+  const barang = document.querySelector('.modalNama').textContent.trim();
+  const harga = document.querySelector('.modalHarga').textContent.trim();
 
-  const nama = document.querySelector('#name').value;
-  const phone = document.querySelector('#phone').value;
-  const address = document.querySelector('#address').value;
-  const barang = document.querySelector('.modalNama').textContent;
-  const harga = document.querySelector('.modalHarga').textContent;
-  
+  // Reset pesan error & border
+  document.querySelector('#errorName').textContent = '';
+  document.querySelector('#errorPhone').textContent = '';
+  document.querySelector('#errorAddress').textContent = '';
+  namaInput.classList.remove('input-error');
+  phoneInput.classList.remove('input-error');
+  addressInput.classList.remove('input-error');
 
-  // Susun pesan dengan line break
+  let valid = true;
+
+  // Validasi nama
+  if (!nama) {
+    document.querySelector('#errorName').textContent = 'Nama wajib diisi';
+    namaInput.classList.add('input-error');
+    valid = false;
+  }
+
+  // Validasi nomor HP
+  const phoneRegex = /^[0-9]{10,15}$/;
+  if (!phone) {
+    document.querySelector('#errorPhone').textContent = 'Nomor HP wajib diisi';
+    phoneInput.classList.add('input-error');
+    valid = false;
+  } else if (!phoneRegex.test(phone)) {
+    document.querySelector('#errorPhone').textContent = 'Nomor HP tidak valid';
+    phoneInput.classList.add('input-error');
+    valid = false;
+  }
+
+  // Validasi alamat
+  if (!address) {
+    document.querySelector('#errorAddress').textContent = 'Alamat wajib diisi';
+    addressInput.classList.add('input-error');
+    valid = false;
+  }
+
+  // Jika ada error, hentikan eksekusi
+  if (!valid) return;
+
+  // Susun pesan WhatsApp
   const pesanText = 
     `Hai kak,%0A` +
     `Saya mau pesan product ini:%0A` +
     `Barang: ${barang}%0A` +
     `Harga: ${harga}%0A` +
-     `Nama: ${nama}%0A` +
+    `Nama: ${nama}%0A` +
     `No. HP: ${phone}%0A` +
-    `Alamat: ${address}%0A` ;
-  
+    `Alamat: ${address}%0A`;
 
+  const nohp = '+628568084552';
   const pesan = `https://api.whatsapp.com/send?phone=${nohp}&text=${pesanText}`;
 
   this.href = pesan;
   window.open(pesan, '_blank');
 });
+
 
 
   
