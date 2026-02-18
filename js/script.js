@@ -21,28 +21,39 @@ item.addEventListener('click',(e) => {
    document.querySelector('.modalDeskripsi').innerHTML = deskripsi;
    document.querySelector('.modalHarga').innerHTML = harga;
 
-   const nohp = '+628568084552';
+        const nohp = '+628568084552';
 
 document.querySelector('.btnBeli').addEventListener('click', function(e) {
-  e.preventDefault(); // supaya tidak langsung reload halaman
+  e.preventDefault();
 
-  // Ambil value dari input
+
+
   const nama = document.querySelector('#name').value;
   const phone = document.querySelector('#phone').value;
   const address = document.querySelector('#address').value;
-
-  // Ambil harga dari span
+  const barang = document.querySelector('.modalNama').textContent;
   const harga = document.querySelector('.modalHarga').textContent;
+  
 
-  // Buat pesan WhatsApp
-  const pesan = `https://api.whatsapp.com/send?phone=${nohp}&text=Hai kak, saya ${nama}, mau pesan product ini dengan harga ${harga}. Nomor saya: ${phone}, alamat: ${address}`;
+  // Susun pesan dengan line break
+  const pesanText = 
+    `Hai kak,%0A` +
+    `Saya mau pesan product ini:%0A` +
+    `Barang: ${barang}%0A` +
+    `Harga: ${harga}%0A` +
+     `Nama: ${nama}%0A` +
+    `No. HP: ${phone}%0A` +
+    `Alamat: ${address}%0A` ;
+  
 
-  // Set href tombol
+  const pesan = `https://api.whatsapp.com/send?phone=${nohp}&text=${pesanText}`;
+
   this.href = pesan;
-
-  // Optional: langsung buka link
   window.open(pesan, '_blank');
 });
+
+
+  
 
 
 });
