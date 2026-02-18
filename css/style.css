@@ -1,17 +1,4 @@
 
-.body {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  outline: none;
-  border: none;
-  text-decoration: none;
-  
-}
-
-
-
-
 div h1 {
 font-style: oblique;
   color: #010101;
@@ -21,4 +8,13 @@ font-style: oblique;
 div h1 span {
   color:  #fa5b0f
   
+}
+input#address.text {
+  margin: 0.5rem 0;
+}
+input#name.text {
+  margin: 0.5rem 0;
+}
+input#phone.phone {
+  margin: 0.1rem 0;
 }
