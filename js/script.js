@@ -1,104 +1,142 @@
-document.querySelectorAll('.btnDetail').forEach(item=>{
-item.addEventListener('click',(e) => {
-  let parent = e.target.parentNode.parentNode;
+document.querySelectorAll('.btnDetail').forEach(item => {
+  item.addEventListener('click', (e) => {
+    let parent = e.target.closest('.card');
 
-  let gambar = parent.querySelector('.card-img-top').src;
-  let harga = parent.querySelector('.harga').innerHTML;
-  let judul = parent.querySelector('.card-text').innerHTML;
-  let deskripsi = parent.querySelector('.deskripsi') ? parent.querySelector('.deskripsi').innerHTML:'';
+    // Ambil data produk
+    let gambar = parent.querySelector('.card-img-top').src;
+    let hargaText = parent.querySelector('.harga').innerHTML.trim();
+    let judul = parent.querySelector('.modalNama').textContent.trim();
+    let deskripsi = parent.querySelector('.deskripsi') 
+      ? parent.querySelector('.deskripsi').innerHTML 
+      : '<i>tidak tersedia</i>';
+    let quantitySelect = document.querySelector('#quantity'); // ambil dari modal
 
-  //let deskripsi = parent.querySelector('.deskripsi') ? parent.querySelector('.deskripsi').innerHTML:'<i>tidak tersedia</i>'; { fungsi script yang dicomand :jika barang tidak ada maka akan menampilkan "tidak tersedia"}
+    // Tampilkan modal
+    let tombolModal = document.querySelector('.btnModal');
+    tombolModal.click();
 
-  let tombolModal = document.querySelector(`.btnModal`);
-   tombolModal.click(); 
+    // Isi modal
+    document.querySelector('.modalTitle').innerHTML = judul;
+    let image = document.createElement('img');
+    image.src = gambar;
+    image.classList.add('w-100');
+    document.querySelector('.modalImage').innerHTML = '';
+    document.querySelector('.modalImage').appendChild(image);
+    document.querySelector('.modalDeskripsi').innerHTML = deskripsi;
+    document.querySelector('.modalHarga').innerHTML = hargaText;
 
-   document.querySelector('.modalTitle').innerHTML = judul;
-   let image = document.createElement('img');
-   image.src = gambar;
-   image.classList.add('w-100');
-   document.querySelector('.modalImage').innerHTML ='';
-   document.querySelector('.modalImage').appendChild(image);
-   document.querySelector('.modalDeskripsi').innerHTML = deskripsi;
-   document.querySelector('.modalHarga').innerHTML = harga;
+    // Format Rupiah
+    const formatRupiah = (num) => {
+      return 'Rp. ' + num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".") + ',-';
+    };
 
-        document.querySelector('.btnBeli').addEventListener('click', function(e) {
-  e.preventDefault();
+    // Hitung total awal
+    let hargaPerItem = parseInt(hargaText.replace(/[^0-9]/g, ''), 10);
+    let modalTotal = document.querySelector('.modalTotal');
+    if (modalTotal) {
+      modalTotal.textContent = formatRupiah(hargaPerItem * quantitySelect.value);
+    }
 
-  const namaInput = document.querySelector('#name');
-  const phoneInput = document.querySelector('#phone');
-  const addressInput = document.querySelector('#address');
+    // Update total saat quantity berubah
+    quantitySelect.addEventListener('change', function() {
+      if (modalTotal) {
+        modalTotal.textContent = formatRupiah(hargaPerItem * this.value);
+      }
+    });
 
-  const nama = namaInput.value.trim();
-  const phone = phoneInput.value.trim();
-  const address = addressInput.value.trim();
-  const barang = document.querySelector('.modalNama').textContent.trim();
-  const harga = document.querySelector('.modalHarga').textContent.trim();
+    // Tombol Beli
+    document.querySelector('.btnBeli').addEventListener('click', function(e) {
+      e.preventDefault();
 
-  // Reset pesan error & border
-  document.querySelector('#errorName').textContent = '';
-  document.querySelector('#errorPhone').textContent = '';
-  document.querySelector('#errorAddress').textContent = '';
-  namaInput.classList.remove('input-error');
-  phoneInput.classList.remove('input-error');
-  addressInput.classList.remove('input-error');
+      const namaInput = document.querySelector('#name');
+      const phoneInput = document.querySelector('#phone');
+      const addressInput = document.querySelector('#address');
+      const noteInput = document.querySelector('#note');
 
-  let valid = true;
+      const nama = namaInput.value.trim();
+      const phone = phoneInput.value.trim();
+      const address = addressInput.value.trim();
+      const note = noteInput.value.trim();
 
-  // Validasi nama
-  if (!nama) {
-    document.querySelector('#errorName').textContent = 'Nama wajib diisi';
-    namaInput.classList.add('input-error');
-    valid = false;
-  }
+      // Reset error
+      document.querySelector('#errorName').textContent = '';
+      document.querySelector('#errorPhone').textContent = '';
+      document.querySelector('#errorAddress').textContent = '';
+      document.querySelector('#errorNote').textContent = '';
+      [namaInput, phoneInput, addressInput, noteInput].forEach(el => el.classList.remove('input-error'));
 
-  // Validasi nomor HP
-  const phoneRegex = /^[0-9]{10,15}$/;
-  if (!phone) {
-    document.querySelector('#errorPhone').textContent = 'Nomor HP wajib diisi';
-    phoneInput.classList.add('input-error');
-    valid = false;
-  } else if (!phoneRegex.test(phone)) {
-    document.querySelector('#errorPhone').textContent = 'Nomor HP tidak valid';
-    phoneInput.classList.add('input-error');
-    valid = false;
-  }
+      let valid = true;
+      let firstErrorField = null;
 
-  // Validasi alamat
-  if (!address) {
-    document.querySelector('#errorAddress').textContent = 'Alamat wajib diisi';
-    addressInput.classList.add('input-error');
-    valid = false;
-  }
+      // Validasi nama
+      if (!nama) {
+        document.querySelector('#errorName').textContent = 'Nama wajib diisi';
+        namaInput.classList.add('input-error');
+        if (!firstErrorField) firstErrorField = namaInput;
+        valid = false;
+      }
 
-  // Jika ada error, hentikan eksekusi
-  if (!valid) return;
+      // Validasi HP
+      const phoneRegex = /^[0-9]{10,15}$/;
+      if (!phone) {
+        document.querySelector('#errorPhone').textContent = 'Nomor HP wajib diisi';
+        phoneInput.classList.add('input-error');
+        if (!firstErrorField) firstErrorField = phoneInput;
+        valid = false;
+      } else if (!phoneRegex.test(phone)) {
+        document.querySelector('#errorPhone').textContent = 'Nomor HP tidak valid';
+        phoneInput.classList.add('input-error');
+        if (!firstErrorField) firstErrorField = phoneInput;
+        valid = false;
+      }
 
-  // Susun pesan WhatsApp
-  const pesanText = 
-    `Hai kak,%0A` +
-    `Saya mau pesan product ini:%0A` +
-    `Barang: ${barang}%0A` +
-    `Harga: ${harga}%0A` +
-    `Nama: ${nama}%0A` +
-    `No. HP: ${phone}%0A` +
-    `Alamat: ${address}%0A`;
+      // Validasi alamat
+      if (!address) {
+        document.querySelector('#errorAddress').textContent = 'Alamat wajib diisi';
+        addressInput.classList.add('input-error');
+        if (!firstErrorField) firstErrorField = addressInput;
+        valid = false;
+      }
 
-  const nohp = '+628568084552';
-  const pesan = `https://api.whatsapp.com/send?phone=${nohp}&text=${pesanText}`;
+      // Validasi catatan max 200 karakter
+      if (note.length > 200) {
+        document.querySelector('#errorNote').textContent = 'Catatan maksimal 200 karakter';
+        noteInput.classList.add('input-error');
+        if (!firstErrorField) firstErrorField = noteInput;
+        valid = false;
+      }
 
-  this.href = pesan;
-  window.open(pesan, '_blank');
+      // Fokus ke field pertama yang error
+      if (!valid) {
+        if (firstErrorField) firstErrorField.focus();
+        return;
+      }
+
+      // Ambil jumlah terbaru
+      let jumlah = quantitySelect.value;
+      let totalHarga = hargaPerItem * jumlah;
+
+      // Susun pesan WhatsApp
+      let pesanText =
+        `Hai kak,%0A` +
+        `Saya mau pesan produk ini:%0A%0A` +
+        `Barang     : ${judul}%0A` +
+        `Harga/item : ${hargaText}%0A` +
+        `Jumlah     : ${jumlah} pcs%0A` +
+        `Total      : ${formatRupiah(totalHarga)}%0A%0A` +
+        `Nama       : ${nama}%0A` +
+        `No. HP     : ${phone}%0A` +
+        `Alamat     : ${address}`;
+
+      if (note) {
+        pesanText += `%0A%0ACatatan   : ${note}`;
+      }
+
+      const nohp = '+628568084552';
+      const pesan = `https://api.whatsapp.com/send?phone=${nohp}&text=${pesanText}`;
+
+      this.href = pesan;
+      window.open(pesan, '_blank');
+    });
+  });
 });
-
-
-
-  
-
-
-});
-});
-
-
-
-
-
