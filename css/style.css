@@ -26,12 +26,9 @@ margin: 0.5rem 0 1%;
 
 input#name.form-control {
   margin: 0.5rem 0 1%;
-} img.me-3.mb-3 {
-    height:auto;
-    width: 300px;
-    justify-content: center;
-    display: flex;
-    position: relative;
-    margin: 2rem 0;
-    right: 2rem;
-}
+} 
+
+
+
+
+
