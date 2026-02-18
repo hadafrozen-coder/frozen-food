@@ -22,11 +22,33 @@ item.addEventListener('click',(e) => {
    document.querySelector('.modalHarga').innerHTML = harga;
 
    const nohp = '+628568084552';
-     let pesan = `https://api.whatsapp.com/send?phone=${+628568084552}&text=hai kak,saya mau pesan product ini : ${gambar}, dengan harga ${harga}`;
 
+document.querySelector('.btnBeli').addEventListener('click', function(e) {
+  e.preventDefault(); // supaya tidak langsung reload halaman
 
+  // Ambil value dari input
+  const nama = document.querySelector('#name').value;
+  const phone = document.querySelector('#phone').value;
+  const address = document.querySelector('#address').value;
 
-    document.querySelector('.btnBeli').href = pesan;
+  // Ambil harga dari span
+  const harga = document.querySelector('.modalHarga').textContent;
+
+  // Buat pesan WhatsApp
+  const pesan = `https://api.whatsapp.com/send?phone=${nohp}&text=Hai kak, saya ${nama}, mau pesan product ini dengan harga ${harga}. Nomor saya: ${phone}, alamat: ${address}`;
+
+  // Set href tombol
+  this.href = pesan;
+
+  // Optional: langsung buka link
+  window.open(pesan, '_blank');
+});
+
 
 });
 });
+
+
+
+
+
