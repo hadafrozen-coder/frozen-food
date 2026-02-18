@@ -1,8 +1,24 @@
+
+.body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  outline: none;
+  border: none;
+  text-decoration: none;
+  
+}
+
+
+
+
 div h1 {
 font-style: oblique;
   color: #010101;
+  
 }
 
 div h1 span {
-  color:  #fa5b0f;
+  color:  #fa5b0f
+  
 }

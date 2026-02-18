@@ -9,6 +9,9 @@
 
        <link rel="stylesheet"href="css/style.css">
 
+       <!-- feather icon -->
+        <script src="https://unpkg.com/feather-icons"></script>
+
   </head>
   <body class="bg-secondary">
    <div class="container p-0 mb-4 mt-4 rounded-3 shadow bg-white">
@@ -24,7 +27,11 @@
       <li class="list-inline-item mx-md-3"><a href="#order" class="text-decoration-none text-dark fw-bold">How to order</a></li>
     </ul>
    </div>
-    </nav>
+ </nav>
+
+
+
+
 <!--BANNER-->
 <div class="px-3 mb-3">
 <img src="images/hero/toko.jpg" alt="" class="w-100 rounded-3" />
@@ -231,6 +238,10 @@
         <div class="col-md-6 col-12">
           <div class="modalDeskripsi"></div>
 
+     <label for="address"> <span class="address">Alamat :</span> 
+      <input type="text" name="address" id="address" class="text"> 
+    </label>  
+
            <div class="d-md-flex">
       <a href="" target="blank" class="btn btn-sm btn-warning d-block btnBeli ">Beli product ini</a>
       <span class="ms-auto text-danger fw-bold d-block text-center modalHarga">Rp. 18.000,00</span>
@@ -253,6 +264,11 @@
     <script src="js/script.js"></script>
 
   <script src="https://unpkg.com/typed.js@3.0.0/dist/typed.umd.js"></script>
+
+<!-- feather icon -->
+   <script>
+      feather.replace();
+    </script>
 
      <script>
     var typed = new Typed('#element', {

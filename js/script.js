@@ -5,7 +5,7 @@ item.addEventListener('click',(e) => {
   let gambar = parent.querySelector('.card-img-top').src;
   let harga = parent.querySelector('.harga').innerHTML;
   let judul = parent.querySelector('.card-text').innerHTML;
-   let deskripsi = parent.querySelector('.deskripsi') ? parent.querySelector('.deskripsi').innerHTML:'';
+  let deskripsi = parent.querySelector('.deskripsi') ? parent.querySelector('.deskripsi').innerHTML:'';
 
   //let deskripsi = parent.querySelector('.deskripsi') ? parent.querySelector('.deskripsi').innerHTML:'<i>tidak tersedia</i>'; { fungsi script yang dicomand :jika barang tidak ada maka akan menampilkan "tidak tersedia"}
 
@@ -22,7 +22,8 @@ item.addEventListener('click',(e) => {
    document.querySelector('.modalHarga').innerHTML = harga;
 
    const nohp = '+628568084552';
-   let pesan = `https://api.whatsapp.com/send?phone=${+628568084552}&text=hai kak,saya mau pesan product ini ${gambar}, dengan harga ${harga}`;
+     let pesan = `https://api.whatsapp.com/send?phone=${+628568084552}&text=hai kak,saya mau pesan product ini : ${gambar}, dengan harga ${harga}`;
+
 
 
     document.querySelector('.btnBeli').href = pesan;
