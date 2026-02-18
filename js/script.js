@@ -12,8 +12,7 @@ document.querySelectorAll('.btnDetail').forEach(item => {
     let quantitySelect = document.querySelector('#quantity'); // ambil dari modal
 
     // Tampilkan modal
-    let tombolModal = document.querySelector('.btnModal');
-    tombolModal.click();
+    document.querySelector('.btnModal').click();
 
     // Isi modal
     document.querySelector('.modalTitle').innerHTML = judul;
@@ -33,15 +32,11 @@ document.querySelectorAll('.btnDetail').forEach(item => {
     // Hitung total awal
     let hargaPerItem = parseInt(hargaText.replace(/[^0-9]/g, ''), 10);
     let modalTotal = document.querySelector('.modalTotal');
-    if (modalTotal) {
-      modalTotal.textContent = formatRupiah(hargaPerItem * quantitySelect.value);
-    }
+    modalTotal.textContent = formatRupiah(hargaPerItem * quantitySelect.value);
 
     // Update total saat quantity berubah
     quantitySelect.addEventListener('change', function() {
-      if (modalTotal) {
-        modalTotal.textContent = formatRupiah(hargaPerItem * this.value);
-      }
+      modalTotal.textContent = formatRupiah(hargaPerItem * this.value);
     });
 
     // Tombol Beli
@@ -72,7 +67,7 @@ document.querySelectorAll('.btnDetail').forEach(item => {
       if (!nama) {
         document.querySelector('#errorName').textContent = 'Nama wajib diisi';
         namaInput.classList.add('input-error');
-        if (!firstErrorField) firstErrorField = namaInput;
+        firstErrorField = firstErrorField || namaInput;
         valid = false;
       }
 
@@ -81,12 +76,12 @@ document.querySelectorAll('.btnDetail').forEach(item => {
       if (!phone) {
         document.querySelector('#errorPhone').textContent = 'Nomor HP wajib diisi';
         phoneInput.classList.add('input-error');
-        if (!firstErrorField) firstErrorField = phoneInput;
+        firstErrorField = firstErrorField || phoneInput;
         valid = false;
       } else if (!phoneRegex.test(phone)) {
         document.querySelector('#errorPhone').textContent = 'Nomor HP tidak valid';
         phoneInput.classList.add('input-error');
-        if (!firstErrorField) firstErrorField = phoneInput;
+        firstErrorField = firstErrorField || phoneInput;
         valid = false;
       }
 
@@ -94,7 +89,7 @@ document.querySelectorAll('.btnDetail').forEach(item => {
       if (!address) {
         document.querySelector('#errorAddress').textContent = 'Alamat wajib diisi';
         addressInput.classList.add('input-error');
-        if (!firstErrorField) firstErrorField = addressInput;
+        firstErrorField = firstErrorField || addressInput;
         valid = false;
       }
 
@@ -102,7 +97,7 @@ document.querySelectorAll('.btnDetail').forEach(item => {
       if (note.length > 200) {
         document.querySelector('#errorNote').textContent = 'Catatan maksimal 200 karakter';
         noteInput.classList.add('input-error');
-        if (!firstErrorField) firstErrorField = noteInput;
+        firstErrorField = firstErrorField || noteInput;
         valid = false;
       }
 

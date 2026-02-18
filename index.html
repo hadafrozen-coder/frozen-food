@@ -301,6 +301,7 @@
             <label for="quantity" class="form-label">Quantity</label>
             <select id="quantity" name="quantity" class="quantity-select">
               <!-- opsi angka 1-50 -->
+               <option value="0">0</option>
               <option value="1">1</option>
               <option value="2">2</option>
               <option value="3">3</option>
@@ -313,6 +314,11 @@
               <option value="10">10</option> 
             </select>
           </div>
+
+          <p class="fw-bold text-success">
+  Total: <span class="modalTotal">Rp. 0,-</span>
+</p>
+
 
            <div class="mb-3"> <label for="note" class="form-label">Catatan tambahan (opsional)</label> <textarea id="note" class="form-control" rows="2" placeholder="Contoh: warna biru, motif batik..."></textarea> <div id="errorNote" class="text-danger small"></div> </div>
 
